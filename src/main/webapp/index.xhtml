@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>Shops:</h2>
+    <ol>
+        <ui:repeat value="#{shops.allShops}" var="shop">
+            <li>#{shop.address}
+                <ul>
+                    <ui:repeat value="#{shop.tools}" var="tool">
+                        <li>  #{tool.toolName} </li>
+                    </ui:repeat>
+                </ul>
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{shops.shopToCreate.address}" required="true" />
+        <h:inputText value="#{shops.shopToCreate.city}" required="true" />
+        <h:commandButton value="Add new shop" actionListener="#{shops.createShops}" action="index?faces-redirect=true"/>
+    </h:form>
+
+    <h:form>
+        <h:inputText value="#{tools.toolToCreate.toolName}" required="true" />
+        <h:inputText value="#{tools.toolToCreate.brand}" required="true" />
+        <h:inputText value="#{tools.toolToCreate.category}" required="true" />
+        <h:inputText value="#{tools.toolToCreate.shops.id}" required="true" />
+        <h:commandButton value="Add new tool" actionListener="#{tools.createTools}" action="index?faces-redirect=true"/>
+    </h:form>
+</h:body>
+</html>
