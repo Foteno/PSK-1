@@ -65,7 +65,7 @@
     select ID, ADDRESS, CITY
     from PUBLIC.SHOP
   </select>
-  <select id="selectClientsForShop" resultType="Shop">
+  <select id="selectClientsForShop" resultType="Client">
     SELECT c.ID, NAME, OCCUPATION
     FROM public.CLIENT c
            join SHOP_CLIENT SC on c.ID = SC.CLIENTS_ID
