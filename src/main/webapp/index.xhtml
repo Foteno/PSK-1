@@ -19,16 +19,22 @@
         </ui:repeat>
     </ol>
     <h:form>
-        <h:inputText value="#{shops.shopToCreate.address}" required="true" />
-        <h:inputText value="#{shops.shopToCreate.city}" required="true" />
+        <h:outputLabel for="address">Address</h:outputLabel>
+        <h:inputText id="address" value="#{shops.shopToCreate.address}" required="true" />
+        <h:outputLabel for="city">City</h:outputLabel>
+        <h:inputText id="city" value="#{shops.shopToCreate.city}" required="true" />
         <h:commandButton value="Add new shop" actionListener="#{shops.createShops}" action="index?faces-redirect=true"/>
     </h:form>
 
     <h:form>
-        <h:inputText value="#{tools.toolToCreate.toolName}" required="true" />
-        <h:inputText value="#{tools.toolToCreate.brand}" required="true" />
-        <h:inputText value="#{tools.toolToCreate.category}" required="true" />
-        <h:inputText value="#{tools.toolToCreate.shops.id}" required="true" />
+        <h:outputLabel for="ToolName">Tool name</h:outputLabel>
+        <h:inputText id="ToolName" value="#{tools.toolToCreate.toolName}" required="true" />
+        <h:outputLabel for="Brand">Brand</h:outputLabel>
+        <h:inputText id="Brand" value="#{tools.toolToCreate.brand}" required="true" />
+        <h:outputLabel for="Category">Category</h:outputLabel>
+        <h:inputText id="Category" value="#{tools.toolToCreate.category}" required="true" />
+        <h:outputLabel for="ShopId">Shop id</h:outputLabel>
+        <h:inputText id="ShopId" value="#{tools.toolToCreate.shops.id}" required="true" />
         <h:commandButton value="Add new tool" actionListener="#{tools.createTools}" action="index?faces-redirect=true"/>
     </h:form>
 </h:body>
