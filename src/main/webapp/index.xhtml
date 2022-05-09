@@ -37,5 +37,41 @@
         <h:inputText id="ShopId" value="#{tools.toolToCreate.shops.id}" required="true" />
         <h:commandButton value="Add new tool" actionListener="#{tools.createTools}" action="index?faces-redirect=true"/>
     </h:form>
+
+    <h2>Clients in shops:</h2>
+    <ol>
+        <ui:repeat value="#{shops.allShops}" var="shop">
+            <li>#{shop.address}
+                <ul>
+                    <ui:repeat value="#{shop.clients}" var="client">
+                        <li>  #{client.name} </li>
+                    </ui:repeat>
+                </ul>
+            </li>
+        </ui:repeat>
+    </ol>
+
+    <h2>Clients assigned to shops:</h2>
+    <ol>
+        <ui:repeat value="#{clients.allClients}" var="client">
+            <li>#{client.name}
+                <ul>
+                    <ui:repeat value="#{client.shops}" var="shop">
+                        <li>  #{shop.address} </li>
+                    </ui:repeat>
+                </ul>
+            </li>
+        </ui:repeat>
+    </ol>
+
+    <h:form>
+        <h:outputLabel for="Name">Name</h:outputLabel>
+        <h:inputText id="Name" value="#{clients.clientToCreate.name}" required="true" />
+        <h:outputLabel for="Occupation">Occupation</h:outputLabel>
+        <h:inputText id="Occupation" value="#{clients.clientToCreate.occupation}" required="true" />
+        <h:outputLabel for="ShopIdClient">Shop id</h:outputLabel>
+        <h:inputText id="ShopIdClient" value="#{clients.shopToAssign}" required="true" />
+        <h:commandButton value="Add new tool" actionListener="#{clients.createClients}" action="index?faces-redirect=true"/>
+    </h:form>
 </h:body>
 </html>

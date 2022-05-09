@@ -25,7 +25,11 @@ public class ShopDAO {
         this.em.persist(shop);
     }
 
-    public Shop findOne(Integer id) {
+    public void update(Shop shop){
+        this.em.merge(shop);
+    }
+
+    public Shop findOne(Long id) {
         return em.find(Shop.class, id);
     }
 }

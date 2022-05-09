@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,6 +26,10 @@ public class Client {
     @Column
     private String occupation;
 
-    @ManyToMany(mappedBy = "clients")
-    private List<Shop> shops;
+
+    @ManyToMany
+    @JoinTable(name="SHOP_CLIENT",
+            joinColumns=@JoinColumn(name="CLIENTS_ID", referencedColumnName="id"),
+            inverseJoinColumns=@JoinColumn(name="SHOPS_ID", referencedColumnName="id"))
+    private List<Shop> shops = new ArrayList<>();
 }

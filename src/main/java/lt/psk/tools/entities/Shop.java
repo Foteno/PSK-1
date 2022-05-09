@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,7 @@ public class Shop {
     @OneToMany(mappedBy = "shops")
     private List<Tool> tools;
 
-    @ManyToMany
-    private List<Client> clients;
+    @ManyToMany(mappedBy = "shops")
+    private List<Client> clients = new ArrayList<>();
+
 }
