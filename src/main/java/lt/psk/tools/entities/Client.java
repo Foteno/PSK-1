@@ -27,7 +27,7 @@ public class Client {
     private String occupation;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name="SHOP_CLIENT",
             joinColumns=@JoinColumn(name="CLIENTS_ID", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="SHOPS_ID", referencedColumnName="id"))

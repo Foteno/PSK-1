@@ -2,7 +2,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head/>
 <h:body>
@@ -71,7 +71,17 @@
         <h:inputText id="Occupation" value="#{clients.clientToCreate.occupation}" required="true" />
         <h:outputLabel for="ShopIdClient">Shop id</h:outputLabel>
         <h:inputText id="ShopIdClient" value="#{clients.shopToAssign}" required="true" />
-        <h:commandButton value="Add new tool" actionListener="#{clients.createClients}" action="index?faces-redirect=true"/>
+        <h:commandButton value="Add new client" actionListener="#{clients.createClients}" action="index?faces-redirect=true"/>
+    </h:form>
+
+    <h:form>
+        <h:selectOneMenu value = "#{clients.clientToCreate.id}">
+            <f:selectItems value="#{clients.allClients}" var="client" itemValue="#{client.id}" itemLabel="#{client.name}"/>
+        </h:selectOneMenu>
+        <h:selectOneMenu value = "#{clients.shopToAssign}">
+            <f:selectItems value="#{shops.allShops}" var="shop" itemValue="#{shop.id}" itemLabel="#{shop.address}"/>
+        </h:selectOneMenu>
+        <h:commandButton value="Add client" actionListener="#{clients.addClientToShop}" action="index?faces-redirect=true"/>
     </h:form>
 </h:body>
 </html>

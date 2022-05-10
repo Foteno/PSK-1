@@ -48,6 +48,26 @@ public class Clients {
         clientDAO.persist(clientToCreate);
     }
 
+    @Transactional
+    public void addClientToShop(){
+        Shop shop = shopDAO.findOne(shopToAssign);
+        if (shop != null) {
+            clientToCreate.getShops().add(shop);
+        }
+        Client updateClient;
+        if (clientToCreate.getId() != null) {
+            updateClient = clientDAO.findOne(clientToCreate.getId());
+            if (!updateClient.getShops().contains(shop))
+            {
+                updateClient.getShops().add(shop);
+                clientDAO.update(updateClient);
+            }
+            return;
+        }
+
+        clientDAO.persist(clientToCreate);
+    }
+
     private void loadAllClients(){
 
         this.allClients = clientDAO.loadAll();

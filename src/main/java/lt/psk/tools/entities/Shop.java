@@ -29,7 +29,7 @@ public class Shop {
     @OneToMany(mappedBy = "shops")
     private List<Tool> tools;
 
-    @ManyToMany(mappedBy = "shops")
+    @ManyToMany(mappedBy = "shops", cascade = CascadeType.ALL)
     private List<Client> clients = new ArrayList<>();
 
 }
