@@ -75,13 +75,38 @@
     </h:form>
 
     <h:form>
-        <h:selectOneMenu value = "#{clients.clientToCreate.id}">
+        <h:outputLabel for="addClientsPicker">Add existing client to a shop</h:outputLabel>
+        <h:selectOneMenu id="addClientsPicker" value="#{clients.clientToCreate.id}">
             <f:selectItems value="#{clients.allClients}" var="client" itemValue="#{client.id}" itemLabel="#{client.name}"/>
         </h:selectOneMenu>
         <h:selectOneMenu value = "#{clients.shopToAssign}">
             <f:selectItems value="#{shops.allShops}" var="shop" itemValue="#{shop.id}" itemLabel="#{shop.address}"/>
         </h:selectOneMenu>
         <h:commandButton value="Add client" actionListener="#{clients.addClientToShop}" action="index?faces-redirect=true"/>
+    </h:form>
+    <br/>
+    <h:form>
+        <h:outputLabel for="clientsPicker">Change clients name</h:outputLabel>
+        <h:selectOneMenu id="clientsPicker" value="#{updateClientDetails.clientToUpdate.id}">
+            <f:selectItems value="#{updateClientDetails.allClients}" var="client" itemValue="#{client.id}" itemLabel="#{client.name}"/>
+        </h:selectOneMenu>
+        <h:outputLabel for="name">Name</h:outputLabel>
+        <h:inputText id="name" value="#{updateClientDetails.clientToUpdate.name}" required="true" />
+        <h:commandButton value="Update name" action="#{updateClientDetails.updateClientName()}"/>
+        <h:outputText value="Value was modified externally, try again" rendered="#{param['error'] == 'optimistic-lock-exception'}" />
+    </h:form>
+    <h:form>
+        <h:outputLabel for="shopsPicker">Change shop address</h:outputLabel>
+        <h:selectOneMenu id="shopsPicker" value="#{updateShopDetails.shopToUpdate.id}">
+            <f:selectItems value="#{updateShopDetails.allShops}" var="shop" itemValue="#{shop.id}" itemLabel="#{shop.address}"/>
+        </h:selectOneMenu>
+        <h:outputLabel for="shopName">Name</h:outputLabel>
+        <h:inputText id="shopName" value="#{updateShopDetails.shopToUpdate.address}" required="true" />
+        <h:commandButton value="Update address" action="#{updateShopDetails.updateShopAddress()}"/>
+
+        <h:outputText value="#{generateShopAddress.addressGenerationStatus}" />
+        <h:commandButton value="Generate shop address?" disabled="#{generateShopAddress.addressGenerationRunning}"
+                         action="#{generateShopAddress.generateNewAddress(updateShopDetails.shopToUpdate.address)}"/>
     </h:form>
 </h:body>
 </html>

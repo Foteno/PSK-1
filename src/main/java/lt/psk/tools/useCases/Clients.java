@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lt.psk.tools.entities.Client;
 import lt.psk.tools.entities.Shop;
+import lt.psk.tools.interceptors.LoggedInvocation;
 import lt.psk.tools.persistence.ClientDAO;
 import lt.psk.tools.persistence.ShopDAO;
 
@@ -49,7 +50,7 @@ public class Clients {
     }
 
     @Transactional
-    public void addClientToShop(){
+    public void addClientToShop() {
         Shop shop = shopDAO.findOne(shopToAssign);
         if (shop != null) {
             clientToCreate.getShops().add(shop);
@@ -62,10 +63,7 @@ public class Clients {
                 updateClient.getShops().add(shop);
                 clientDAO.update(updateClient);
             }
-            return;
         }
-
-        clientDAO.persist(clientToCreate);
     }
 
     private void loadAllClients(){

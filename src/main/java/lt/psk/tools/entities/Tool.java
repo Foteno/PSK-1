@@ -30,4 +30,8 @@ public class Tool {
     @ManyToOne
     private Shop shops;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
 }

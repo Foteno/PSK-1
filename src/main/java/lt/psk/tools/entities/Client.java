@@ -32,4 +32,8 @@ public class Client {
             joinColumns=@JoinColumn(name="CLIENTS_ID", referencedColumnName="id"),
             inverseJoinColumns=@JoinColumn(name="SHOPS_ID", referencedColumnName="id"))
     private List<Shop> shops = new ArrayList<>();
+
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
 }

@@ -32,4 +32,8 @@ public class Shop {
     @ManyToMany(mappedBy = "shops", cascade = CascadeType.ALL)
     private List<Client> clients = new ArrayList<>();
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION")
+    private Integer version;
+
 }

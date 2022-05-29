@@ -6,4 +6,15 @@
                       http://xmlns.jcp.org/xml/ns/javaee/beans_1_1.xsd"
         bean-discovery-mode="annotated">
 
+    <alternatives>
+        <class>lt.psk.tools.generator.FastShopAddressGenerator</class>
+    </alternatives>
+    <interceptors>
+        <class>lt.psk.tools.interceptors.MethodLogger</class>
+    </interceptors>
+    <decorators>
+        <class>
+            lt.psk.tools.decorator.DotAdder
+        </class>
+    </decorators>
 </beans>
